@@ -1,0 +1,50 @@
+﻿@model System.Collections.Generic.List<WebMusicCenter.Models.DataAccessPostgreSqlProvider.DbCompletingForm>
+@{
+    ViewBag.Title = "Анкеты с описанием проблемы";
+    Layout = "_Layout";
+}
+<h2>@ViewBag.Title</h2>
+@foreach (var form in Model)
+{
+<div>
+    Название формы:
+    @form.FormName
+    Имя заполнителя:
+    @form.Name
+    Фамилия:
+    @form.Surname
+    Отчество:
+    @form.Patronymic
+    Контактная информация:
+    @form.ContactDetails
+    Тип:
+    @form.InstrumentType
+    Дата:
+    @form.Create
+
+    @*<a href="Print?id=@form.Id">Напечатать в Excel</a>*@
+
+    <img src="Image?id=@form.Id" />
+
+    <table class="table table-bordered table-responsive table-hover">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Модель инструмента</td>
+                <td>Описание проблемы</td>
+            </tr>
+        </thead>
+        @if (form.Description != null)
+        {
+            foreach (var sm in form.Description)
+            {
+                <tr>
+                    <td>@sm.Id</td>
+                    <td>@sm.ModelOfInstrument</td>
+                    <td>@sm.FullDescription</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+}

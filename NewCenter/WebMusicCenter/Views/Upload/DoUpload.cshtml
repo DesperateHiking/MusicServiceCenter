@@ -1,0 +1,36 @@
+﻿@model NewCenter.CompletingForm
+
+@{
+    ViewBag.Title = "Заявка " + Model.FormName;
+    Layout = "_Layout";
+}
+
+<h2>Заявка @Model.FormName</h2>
+
+Имя заполнителя:
+@Model.Name
+Фамилия:
+@Model.Surname
+Тип:
+@Model.InstrumentType
+Дата:
+@Model.Create
+
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <td>Модель инструмента</td>
+            <td>Описание проблемы</td>
+        </tr>
+    </thead>
+    @if (Model.ProblemDescription != null)
+    {
+        foreach (var sm in Model.ProblemDescription)
+        {
+            <tr>
+                <td>@sm.ModelOfInstrument</td>
+                <td>@sm.FullDescription</td>
+            </tr>
+        }
+    }
+</table>
